@@ -46,8 +46,9 @@ impl PlayerMiddleware {
     /**
      * Middleware for when the player plays a card.
      * Writes a message to the log.
+     * Also signals for event-type affects to happen 
      */
-    pub(crate) fn played_card_middleware(&mut self, p: &mut Player, card: Box<dyn Card>) {
+    pub(crate) fn played_card_middleware(&mut self, p: &Player, card: &Box<dyn Card>) {
         let message = format!("{} played {}", p.name, card.get_name());
 
         self.game_log.push(message.clone());

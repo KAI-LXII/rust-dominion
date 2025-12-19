@@ -9,7 +9,10 @@ Buckle up.
 // Import necessary libraries.
 use dominion_library::{card_manager::card::Card, card_manager::card_properties::CardTypes, player::phases::PlayerPhases, player::player::PlayerUIInterface};
 use ratatui::{
-    layout::{Constraint, Direction, Layout, Rect}, prelude::{Alignment, Stylize}, style::{Color, Modifier, Style}, text::{Line, Span, Text}, widgets::{Block, Borders, Clear, List, ListDirection, Paragraph, Padding, Wrap}, Frame
+    layout::{Constraint, Direction, Layout, Rect}, 
+    prelude::{Alignment, Stylize}, style::{Color, Modifier, Style}, 
+    text::{Line, Span, Text}, 
+    widgets::{Block, Borders, Clear, List, ListDirection, Paragraph, Padding, Wrap}, Frame
 };
 
 use crate::app::{App, CurrentScreen, WelcomeButton, GameSection};
@@ -146,8 +149,10 @@ fn playing_screen(frame: &mut Frame, app: &mut App) {
             .block(game_error_popup_block)
             .wrap(Wrap { trim: false });
 
+
             let area = centered_rect(30, 25, frame.area());
 
+            frame.render_widget(Clear, area);
             frame.render_widget(error_paragraph, area);
         }
 

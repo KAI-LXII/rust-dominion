@@ -145,8 +145,8 @@ impl Player {
                 }
 
             }
+            self.player_middleware.borrow_mut().played_card_middleware(self, &card);
             self.in_play.push(card);
-            //self.player_middleware.borrow_mut().played_card_middleware(card);
 
 
             None
