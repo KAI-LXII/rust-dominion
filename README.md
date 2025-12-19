@@ -6,9 +6,6 @@ Dominion is created by the amazing Donald X. Vaccarino, and published by Rio Gra
 
 This software is created for educational purposes only.
 
->[!NOTE]
->While the game is currently playable, there are several features I wish to implement, and am changing at this very moment. This readme does not reflect the current state of game features, as I am developing this right up until the submission.
-
 ## Table of contents
 1. [Descrption](#description)
 2. [How to run](#how-to-run)
