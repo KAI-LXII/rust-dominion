@@ -83,6 +83,16 @@ pub(crate) fn build_victory_piles() -> Vec<Pile> {
 
 }
 
+pub (crate) fn build_militia_pile() -> Pile {
+    let militia_pile = Pile {
+        pile_name: String::from("Militia pile"),
+        cards_left: 10,
+        card_creator: build_militia
+    };
+
+    return militia_pile
+}
+
 /**
  * Builder for smithy action card.
  */

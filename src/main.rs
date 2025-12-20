@@ -274,12 +274,19 @@ fn handle_kingdom_nav(app: &mut App, code:KeyCode) {
     match code {
         // When we move down,
         KeyCode::Down => {
-            if app.game_nav_data.kingdom_row == 2 {
+            if app.game_nav_data.kingdom_row == 3 {
                 // If we're at the edge of the kingdom rows, move into the player buttons (As we don't know if cards exist)
                 app.game_nav_data.current_game_section = GameSection::PlayerButtons;
+            }
+            else if app.game_nav_data.kingdom_row == 2 {
+                if app.game_nav_data.kingdom_column != 0 {
+                    app.game_nav_data.kingdom_column = 0
+                }
+                app.game_nav_data.kingdom_row += 1;
             } else {
                 // Otherwise, just move down.
                 app.game_nav_data.kingdom_row += 1;
+
             }
             
         },

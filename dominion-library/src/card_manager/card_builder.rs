@@ -7,7 +7,7 @@ Builder for several common cards used in dominion.
 
 use crate::player::phases::PlayerPhases;
 use crate::card_manager::card::{Card, CardProperties, TypeProperties};
-use crate::card_manager::card_properties::{ActionProperties, CardTypes, TreasureProperties, VictoryProperties, ActionEvents};
+use crate::card_manager::card_properties::{ActionProperties, CardTypes, TreasureProperties, VictoryProperties, ActionEvents, AttackProperties, AttackSequence};
 
 
 /**
@@ -197,6 +197,38 @@ pub fn build_province() -> Box<dyn Card> {
 
     return Box::new(prop);
 
+}
+
+pub fn build_militia() -> Box<dyn Card> {
+    let prop = CardProperties {
+        name: String::from("Militia"),
+        played_during: PlayerPhases::Action,
+        cost: 4,
+        card_types: vec![CardTypes::Action, CardTypes::Attack],
+        card_type_properties: TypeProperties {
+            action_properties: ActionProperties {
+                temp_coin: 2,
+                added_actions: 0,
+                added_buys: 0,
+                added_cards: 0,
+                event: ActionEvents::No
+            },
+            attack_properties: AttackProperties {
+                attack_sequence: vec![AttackSequence::HandSize(3)]
+            },
+            description: String::from(format!(r#"
+                Militia
+                Type: Action-Attack
+                Cost: 4
+                +2 Coin
+                Each other player must discard down to three cards.
+            
+            "#)),
+            ..Default::default()
+        }
+    };
+
+    return Box::new(prop);
 }
 
 /**

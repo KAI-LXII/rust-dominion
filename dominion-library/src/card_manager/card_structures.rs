@@ -13,6 +13,7 @@ use crate::card_manager::card::Card;
  * A pile represents a stack of one card.
  * Instead of creating the cards at runtime and hogging memory resources, the pile contains a builder method, and returns one card at a time.
  */
+ #[derive(PartialEq, Eq, Hash)]
 pub struct Pile {
     pub pile_name: String,
     pub cards_left: u8,

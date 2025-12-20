@@ -5,12 +5,14 @@ card_properties.rs
 File containing several struct compositions of card properties.
 */
 
+use crate::card_manager::card_structures::Pile;
+
 /**
  * CardTypes
  * Enum representing when cards can be played, represented by an integer.
  * Integer representation was critical for a function I didn't get to implement.
  */
-#[derive(PartialEq, Clone, Copy)]
+#[derive(Eq, Hash, PartialEq, Clone, Copy)]
 pub enum CardTypes {
     Victory = 0,
     Treasure = 1,
@@ -60,6 +62,34 @@ impl TreasureProperties {
     pub fn get_value(&self) -> i32 {
         return self.value; 
     }
+}
+
+
+#[derive (Clone, Hash, Eq, PartialEq)]
+pub struct AttackProperties {
+    pub(crate) attack_sequence: Vec<AttackSequence>
+}
+
+impl AttackProperties {
+    pub fn new() -> AttackProperties {
+        AttackProperties {
+            attack_sequence: Vec::new()
+        }
+
+    }
+}
+
+
+/**
+ * AttackSequence
+ * Things, in order, that happen when an attack card is played.
+ */
+#[derive (Clone, Hash, Eq, PartialEq)]
+pub enum AttackSequence {
+    HandSize(i32),
+    // Add this back in for gaining curses
+    // ForceGain(&mut Pile),
+    TopDeckTypeOrReveal(CardTypes, i32)
 }
 
 // Below this line is unused structs and methods that I hope to implement before the deadline.

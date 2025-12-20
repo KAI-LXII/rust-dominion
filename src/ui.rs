@@ -247,14 +247,18 @@ pub fn render_buying_area(frame: &mut Frame, area: Rect, app: &mut App) {
         Line::from(format!("Left in stock: {}", data.kingdom_set[i].1)),
         Line::from(format!("Price: {}", data.kingdom_set[i].2))]).style(Style::default().fg(Color::Gray));
 
-        if app.game_nav_data.kingdom_row == 2 && app.game_nav_data.kingdom_column == i as u8 && app.game_nav_data.current_game_section == GameSection::Kingdom {
-            w = w.style(selected_style);
-        }
         if i < 5 {
+            if app.game_nav_data.kingdom_row == 2 && app.game_nav_data.kingdom_column == i as u8 && app.game_nav_data.current_game_section == GameSection::Kingdom {
+                w = w.style(selected_style);
+            }
+
             frame.render_widget(w, horizontal_cards[2][i])
         }
         else {
-            frame.render_widget(w, horizontal_cards[3][i])
+            if app.game_nav_data.kingdom_row == 3 && app.game_nav_data.kingdom_column == (i - 5) as u8 && app.game_nav_data.current_game_section == GameSection::Kingdom {
+                w = w.style(selected_style);
+            }
+            frame.render_widget(w, horizontal_cards[3][i - 5])
         }
         
     }

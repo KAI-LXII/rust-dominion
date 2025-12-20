@@ -57,6 +57,7 @@ impl GameManager {
         board.kingdom_set.push(build_village_pile());
         board.kingdom_set.push(build_smithy_pile());
         board.kingdom_set.push(build_market_pile());
+        board.kingdom_set.push(build_militia_pile());
 
         // Create the middleware (Currently unused)
         let middle_cell = Rc::new(RefCell::new(PlayerMiddleware::new()));

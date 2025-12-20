@@ -8,10 +8,19 @@ Currently unimplemented.
 
 use crate::player::player::Player;
 use crate::card_manager::card::Card;
+use crate::card_manager::card_properties::{CardTypes, AttackProperties};
+use std::collections::HashMap;
 
 // This section of code is not currently in use.
 // It is meant to log actions and do modifications in case of actions being played.
 // Comments are available, if needed.
+
+
+#[derive(PartialEq, Eq, Hash, Clone)]
+pub enum PlayEvent {
+    AttackPlayed(Vec<AttackProperties>)
+
+}
 
 /**
  * PlayerMiddleware struct
@@ -20,8 +29,11 @@ use crate::card_manager::card::Card;
  */
 pub(crate) struct PlayerMiddleware {
     game_log: Vec<String>,
-    update_log: Vec<String>
+    update_log: Vec<String>,
+    player_notifs: HashMap<PlayEvent, Vec<Subscriber>>
 }
+
+pub type Subscriber = fn(gimmie: String);
 
 /**
  * PlayerMiddleware implementation
@@ -33,7 +45,8 @@ impl PlayerMiddleware {
     pub (crate) fn new() -> PlayerMiddleware {
         let mut m = PlayerMiddleware {
             game_log: Vec::new(),
-            update_log: Vec::new()
+            update_log: Vec::new(),
+            player_notifs: HashMap::new()
         };
 
         m.game_log.push(String::from("Game start!"));

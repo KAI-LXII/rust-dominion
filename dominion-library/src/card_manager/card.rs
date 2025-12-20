@@ -34,6 +34,7 @@ pub struct TypeProperties {
     pub(crate) treasure_properties: TreasureProperties,
     pub(crate) victory_properties: VictoryProperties,
     pub(crate) action_properties: ActionProperties,
+    pub(crate) attack_properties: AttackProperties,
     pub(crate) description: String
 }
 /**
@@ -50,6 +51,7 @@ impl Default for TypeProperties {
                 points: 0
             },
             action_properties: ActionProperties::new(),
+            attack_properties: AttackProperties::new(),
             description: String::from("No description provided"),
         }
     }
@@ -69,6 +71,7 @@ pub trait Card {
     fn get_description(&self) -> &String;
     fn get_name(&self) -> &String;
     fn get_action_properties(&self) -> ActionProperties;
+    fn get_attack_properties(&self) -> AttackProperties;
 }
 
 /**
@@ -102,6 +105,10 @@ impl Card for CardProperties {
 
     fn get_action_properties(&self) -> ActionProperties {
         return self.card_type_properties.action_properties.clone();
+    }
+
+    fn get_attack_properties(&self) -> AttackProperties {
+        return self.card_type_properties.attack_properties.clone();
     }
 
     fn get_description(&self) -> &String {
